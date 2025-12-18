@@ -1815,6 +1815,11 @@ input, select, textarea {
 	/* width: 60%;                  text occupies 60% width (change to 55%/65% as desired) */
 }
 
+#banner .banner-text h2,
+#banner .banner-text p {
+  color: #fff !important;
+}
+
 /* photo column (right) */
 #banner .banner-photo {
   width: 35%;
@@ -2031,7 +2036,7 @@ input, select, textarea {
 
 /* Large */
 
-	@media screen and (max-width: 1280px) {
+	@media screen and (max-width: 980px) {
 
 		/* Basic */
 
@@ -2078,7 +2083,13 @@ input, select, textarea {
     			text-align: center;
   			}
 
-			#banner .banner-text{ width: 100%;}
+			#banner .banner-text{ 
+				max-width: 100%;
+				background: rgba(10, 14, 18, 0.55);
+    			padding: 16px 18px;
+    			border-radius: 8px;
+				margin-bottom: 0.75rem;
+			}
   			#banner .banner-photo {
     			width: 60%;
 				height: auto;
