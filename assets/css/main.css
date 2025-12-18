@@ -1803,7 +1803,16 @@ input, select, textarea {
 
 /* text column (left) */
 #banner .banner-text {
-  width: 60%;                  /* text occupies 60% width (change to 55%/65% as desired) */
+	background: rgba(10, 14, 18, 0.60); /* tweak alpha 0.45 - 0.75 as desired */
+  	color: #ffffff;                     /* ensure text is white */
+  	padding: 28px 34px;                 /* inner spacing */
+  	border-radius: 10px;                /* rounded corners */
+  	box-shadow: 0 10px 30px rgba(0,0,0,0.45); /* soft drop shadow */
+  	border: 1px solid rgba(255,255,255,0.05); /* faint highlight edge */
+  	-webkit-backdrop-filter: blur(6px); /* nice glass blur (Safari/Chrome) */
+  	backdrop-filter: blur(6px);         /* modern browsers */
+  	max-width: 100%;                    /* won't overflow column */
+	/* width: 60%;                  text occupies 60% width (change to 55%/65% as desired) */
 }
 
 /* photo column (right) */
