@@ -1783,10 +1783,13 @@ input, select, textarea {
 /* Banner: two-column layout (text left, photo right) */
 #banner {
   text-align: left;            /* left align text inside the text column */
-  width: 940px;                /* keep original width */
+  width: 100%;
+  max-width: 1200px;                /* keep original width */
   margin: 0 auto;
-  overflow: hidden;
-  padding: 9em 0 6em 0;
+  /* overflow: hidden; */
+  /* padding: 9em 0 6em 0; */
+  padding: 6em 1.5em;
+  box-sizing: border-box;
 }
 
 /* inner flex container divides banner into text + photo */
@@ -1795,6 +1798,7 @@ input, select, textarea {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  flex-wrap: nowrap;
 }
 
 /* text column (left) */
@@ -1804,25 +1808,32 @@ input, select, textarea {
 
 /* photo column (right) */
 #banner .banner-photo {
-  width: 35%;                  /* photo column width */
+  width: 35%;
+  height: 560px;                  /* photo column width */
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
 /* scale the image and make it round */
 #banner .banner-photo img {
-  max-width: 100%;
-  width: 280px;                /* change size as needed */
-  height: auto;
-  border-radius: 50%;
+  /* max-width: 100%; */
+  width: auto;                /* change size as needed */
+  height: 100%;
+  /* border-radius: 50%;
   border: 4px solid rgba(255,255,255,0.6);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35); */
+  object-fit: cover;           /* cover = fill container, crop if needed */
+  display: block;
+  border-radius: 8px;
 }
 
 /* keep the decorative lines and heading style but left-aligned */
 #banner h2 {
-  border: solid 1px rgba(255, 255, 255, 0.25);
+  /* border: solid 1px rgba(255, 255, 255, 0.25);
   border-left: 0;
   border-right: 0;
   color: rgba(255, 255, 255, 0.85);
@@ -1830,28 +1841,33 @@ input, select, textarea {
   font-weight: 700;
   line-height: 1.3em;
   margin: 0 0 1.5em 0;
-  text-align: left;        /* important: left-align the heading */
+  text-align: left;        important: left-align the heading */
+  color: rgba(255,255,255,0.95);
+  font-size: 2.6rem;
+  margin: 0 0 0.8rem 0;
+  text-align: left;
+  letter-spacing: 0.06em;
 }
 
 /* the :before and :after rules (horizontal lines) follow the h2 width naturally */
-#banner h2:before,
+/* #banner h2:before,
 #banner h2:after {
   content: '';
   display: block;
   border-color: rgba(255, 255, 255, 0.25);
-}
+} */
 
 /* paragraph left-aligned within the text column */
 #banner p {
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  /* letter-spacing: 0.04em; */
   text-align: left;        /* left align paragraph text */
-  width: 100%;
+  /* width: 100%; */
   margin: 0;
-  line-height: 1.5em;
+  line-height: 1.6;
 }
 
 /* Sidebar */
@@ -2041,24 +2057,33 @@ input, select, textarea {
 		/* Banner */
 
 			#banner {
-				width: 100%;
-				padding: 4em 0 2em 0;
+				/* width: 100%;
+				padding: 4em 0 2em 0; */
+				padding: 3.5em 1rem;
 			}
 			    
 			#banner .banner-inner {
     			flex-direction: column;
     			align-items: center;
+				gap: 1.25rem;
     			text-align: center;
   			}
 
-			#banner .banner-text,
+			#banner .banner-text{ width: 100%;}
   			#banner .banner-photo {
-    			width: 100%;
+    			width: 60%;
+				height: auto;
   			}
 
 			#banner h2 { text-align: center; }
   			#banner p { text-align: center; font-size: 1.25em; }
-  			#banner .banner-photo img { width: 200px; }
+  			#banner .banner-photo img { 
+				/* width: 200px;  */
+				width: 100%;
+    			height: auto;
+    			object-fit: cover;
+    			border-radius: 8px;
+			}
 		
 
 				/* #banner h2 {
