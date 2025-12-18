@@ -1843,7 +1843,7 @@ input, select, textarea {
   margin: 0 0 1.5em 0;
   text-align: left;        important: left-align the heading */
   color: rgba(255,255,255,0.95);
-  font-size: 2.6em;
+  font-size: 3.0rem;
   margin: 0 0 0.8rem 0;
   text-align: left;
   letter-spacing: 0.06em;
@@ -1861,7 +1861,7 @@ input, select, textarea {
 #banner p {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   /* letter-spacing: 0.04em; */
   text-align: left;        /* left align paragraph text */
