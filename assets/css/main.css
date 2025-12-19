@@ -1805,7 +1805,7 @@ input, select, textarea {
 #banner .banner-text {
 	background: rgba(10, 14, 18, 0.60); /* tweak alpha 0.45 - 0.75 as desired */
   	color: #ffffff;                     /* ensure text is white */
-  	padding: 28px 34px;                 /* inner spacing */
+  	padding: 15px 20px;                 /* inner spacing */
   	border-radius: 10px;                /* rounded corners */
   	box-shadow: 0 10px 30px rgba(0,0,0,0.45); /* soft drop shadow */
   	border: 1px solid rgba(255,255,255,0.05); /* faint highlight edge */
