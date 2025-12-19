@@ -1812,6 +1812,9 @@ input, select, textarea {
   	-webkit-backdrop-filter: blur(6px); /* nice glass blur (Safari/Chrome) */
   	backdrop-filter: blur(6px);         /* modern browsers */
   	max-width: 100%;                    /* won't overflow column */
+	flex: 1 1 auto;    /* grow to take remaining space */
+  	min-width: 260px;  /* prevents it from collapsing too much */
+  	box-sizing: border-box;
 	/* width: 60%;                  text occupies 60% width (change to 55%/65% as desired) */
 }
 
@@ -1822,6 +1825,7 @@ input, select, textarea {
 
 /* photo column (right) */
 #banner .banner-photo {
+  flex: 0 0 360px; 
   width: 35%;
   height: 560px;                  /* photo column width */
   display: flex;
@@ -1830,6 +1834,7 @@ input, select, textarea {
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  box-sizing: border-box;
 }
 
 /* scale the image and make it round */
@@ -2084,15 +2089,18 @@ input, select, textarea {
   			}
 
 			#banner .banner-text{ 
-				max-width: 100%;
+				max-width: 900px;
+				width: 100%;
+				min-width: 0;
 				background: rgba(10, 14, 18, 0.55);
     			padding: 16px 18px;
     			border-radius: 8px;
 				margin-bottom: 0.75rem;
 			}
   			#banner .banner-photo {
-    			width: 60%;
+    			width: 70%;
 				height: auto;
+				flex: 0 0 auto;
   			}
 
 			#banner h2 { text-align: center; }
