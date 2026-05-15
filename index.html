@@ -1,261 +1,1043 @@
-<!DOCTYPE HTML>
-<!--
-	ZeroFour by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Mayank Pattnaik</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mayank Pattnaik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink:      #0f0e0c;
+      --ink-soft: #4a4640;
+      --ink-mute: #8a847c;
+      --paper:    #f7f5f0;
+      --paper-2:  #eeeae2;
+      --accent:   #b5400a;
+      --accent-2: #1a3a5c;
+      --gold:     #c9a84c;
+      --line:     rgba(15,14,12,0.1);
+      --r: 4px;
+      --sans: 'Outfit', sans-serif;
+      --serif: 'EB Garamond', serif;
+      --mono: 'DM Mono', monospace;
+    }
 
-			<!-- Header -->
-			<div id="header-wrapper">
-				<div class="container">
+    html { scroll-behavior: smooth; }
 
-					<header id="header">
-						<div class="inner">
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-							<!-- Logo -->
-							<h1><a href="index.html" id="logo">Menu</a></h1>
+    ::selection { background: var(--accent); color: #fff; }
 
-							<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li class="current_page_item"><a href="index.html">About</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Publications</a></li>
-									<li><a href="#">Talks</a></li>
-									<li><a href="https://drive.google.com/file/d/1lxhaxNELq7_NFgHO3gSdHbSl__xbtHhi/view?usp=sharing">CV</a></li>
-								</ul>
-							</nav>
+    /* ── Noise Texture Overlay ────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
 
-						</div>
-					</header>
+    /* ── Navigation ───────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(247,245,240,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      transition: padding 0.3s;
+    }
 
-					<!-- Banner -->
-                    <div id="banner">
-                    <div class="banner-inner">
-                    <div class="banner-text">
-                    <!-- <h2><strong>Hello there!</strong></h2> -->
-                    <p>Hello there!! Myself, Mayank Pattnaik, a 3rd year Physics undergraduate student at IIT Kanpur. Apart from the academia stuff, I'm an avid reader (kuch bhi do padh lunga) and a chess player (obviously not a GM). Other hobbies include gardening and playing badminton.</p>
-                    </div>
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
 
-                    <div class="banner-photo">
-                    <!-- replace me.jpg with your real photo in images/ -->
-                    <img src="images/pic01a.jpg" alt="" />
-                    </div>
-            </div>
-            </div>
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
 
-				</div>
-			</div>
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s;
+    }
 
-			<!-- Main Wrapper -->
-			<div id="main-wrapper">
-				<div class="wrapper style1">
-					<div class="inner">
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
 
-						<!-- Feature 1 -->
-						<section class="container box feature1">
-							<div class="row">
-								<div class="col-12">
-									<header class="first major">
-										<h2>Research Interests</h2>
-										<p>Areas I want to actively work on and explore.</p>
-									</header>
-								</div>
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
 
-								<div class="col-4 col-12-medium">
-									<section>
-										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-										<header class="second icon solid fa-atom">
-											<h3>Applied ML</h3>
-											<p>Solving real life problems with ML</p>
-										</header>
-									</section>
-								</div>
+    .nav-cv {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.45rem 1rem;
+      border-radius: var(--r);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cv:hover { background: var(--accent); color: #fff; }
 
-								<div class="col-4 col-12-medium">
-									<section>
-										<a href="#" class="image featured"><img src="images/pic2.jpg" alt="" /></a>
-										<header class="second icon solid fa-satellite">
-											<h3>Comp. Astro & Astrophy</h3>
-											<p>CSE + Astronomy</p>
-										</header>
-									</section>
-								</div>
+    /* ── Hero ─────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 4rem 4rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-								<div class="col-4 col-12-medium">
-									<section>
-										<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-										<header class="second icon solid fa-brain">
-											<h3>QMQC</h3>
-											<p>Meeeoooowwww!!! (iykyk)</p>
-										</header>
-									</section>
-								</div>
-							</div>
-						</section>
+    /* Decorative grid */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 80% 50%, black 30%, transparent 80%);
+      pointer-events: none;
+    }
 
-					</div>
-				</div>
+    .hero-text { position: relative; }
 
-				<!-- Projects Section -->
-				<div class="wrapper style2">
-					<div class="inner">
-						<section class="container box feature2">
-							<div class="row">
-								<div class="col-6 col-12-medium">
-									<section>
-										<header class="major">
-											<h2>Recent Project</h2>
-											<p>In works</p>
-										</header>
-										<p>In works.</p>
-										<footer>
-											<a href="#" class="button medium icon solid fa-arrow-circle-right">View Project</a>
-										</footer>
-									</section>
-								</div>
-								<div class="col-6 col-12-medium">
-									<section>
-										<header class="major">
-											<h2>Recent Research Work</h2>
-											<p>Application of PINN for Dynamic Oscillator Systems</p>
-										</header>
-										<p>Using PINNs to approximate solutions and simulate dynamic quantum/physical systems.</p>
-										<footer>
-											<a href="https://github.com/MayankPattnaik/Application_of_PINNs_to_dynamic_oscillator_systems" class="button medium alt icon solid fa-info-circle">Learn More</a>
-										</footer>
-									</section>
-								</div>
-							</div>
-						</section>
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
 
-					</div>
-				</div>
+    .hero-tag::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--accent);
+    }
 
-				<!-- Blog / Updates Section -->
-				<div class="wrapper style3">
-					<div class="inner">
-						<div class="container">
-							<div class="row">
-								<div class="col-8 col-12-medium">
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
 
-									<section class="box article-list">
-										<h2 class="icon fa-file-alt">Recent Updates</h2>
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
 
-										<article class="box excerpt">
-											<a href="#" class="image left"><img src="images/pic04.jpg" alt="" /></a>
-											<div>
-												<header>
-													<span class="date">Dec 2025</span>
-													<h3><a href="#">Winter Vacations start!!</a></h3>
-												</header>
-												<p>Finally, lots of sleep, reunions etc... but sleep I must alongwith building this website.</p>
-											</div>
-										</article>
+    .hero-bio {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
 
-										<article class="box excerpt">
-											<a href="#" class="image left"><img src="images/pic05.jpg" alt="" /></a>
-											<div>
-												<header>
-													<span class="date">Nov 2025</span>
-													<h3><a href="#">ENDSEMS/GAMES (interpret in your sense, visitor!!)</a></h3>
-												</header>
-												<p>A rollercoaster semester and a 2.5 journey comes to an end.</p>
-											</div>
-										</article>
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.65s forwards;
+    }
 
-										<article class="box excerpt">
-											<a href="#" class="image left"><img src="images/pic06.jpg" alt="" /></a>
-											<div>
-												<header>
-													<span class="date">Oct 2025</span>
-													<h3><a href="#">Diwali bonanza and masti ends</a></h3>
-												</header>
-												<p>Time pass right up until quiz starts to get on my head.</head></head></p>
-											</div>
-										</article>
+    .chip {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink-soft);
+      background: var(--paper-2);
+    }
 
-									</section>
-								</div>
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.8s forwards;
+    }
 
-								<div class="col-4 col-12-medium">
-									<section class="box spotlight">
-										<h2 class="icon fa-file-alt">Highlight</h2>
-										<article>
-											<a href="#" class="image featured"><img src="images/pic07.jpg" alt=""></a>
-											<header>
-												<h3><a href="#">InterIIT Tech Meet 14.0</a></h3>
-												<p>2nd Position acheived and legacy is restored</p>
-											</header>
-											<p>Congratulations everyone!!!!</p>
-											<footer>
-												<a href="https://docs.google.com/spreadsheets/d/171b5VTwQ5rfgRLB89m7c1tNmjAfB4kh5/edit?usp=drivesdk&ouid=104278674115859851122&rtpof=true&sd=true" class="button alt icon solid fa-file-alt">Results</a>
-											</footer>
-										</article>
-									</section>
-								</div>
+    .btn-primary {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.75rem 1.75rem;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      border-radius: var(--r);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
 
-							</div>
-						</div>
-					</div>
-				</div>
+    .btn-secondary {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.75rem 1.75rem;
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
 
-			</div>
+    /* Hero image / card */
+    .hero-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 1s 0.4s forwards;
+    }
 
-			<!-- Footer Wrapper -->
-			<div id="footer-wrapper">
-				<footer id="footer" class="container">
-					<div class="row">
+    .hero-img-wrap {
+      width: 280px;
+      height: 340px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08);
+    }
 
-						<div class="col-6 col-12-medium imp-medium">
-							<section>
-								<h2>Contact</h2>
-								<div>
-									<dl class="contact">
-										<dt>Email</dt>
-										<dd><a href="mailto:mayankp23@iitk.ac.in">mayankp23@iitk.ac.in</a></dd>
-										<dt>GitHub</dt>
-										<dd><a href="https://github.com/MayankPattnaik">github.com/MayankPattnaik</a></dd>
-										<dt>LinkedIn</dt>
-										<dd><a href="https://www.linkedin.com/in/mayank-pattnaik-92b987280/">linkedin.com/Mayank Pattnaik</a></dd>
-										<dt>Instagram</dt>
-										<dd><a href="https://www.instagram.com/_planetxnine_/">instagram.com/_planetxnine_</a></dd>
-									</dl>
-								</div>
-							</section>
-						</div>
-					</div>
+    .hero-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .hero-img-wrap:hover img { transform: scale(1.03); }
 
-					<div class="col-12">
-						<div id="copyright">
-							<ul class="menu">
-								<li>&copy; 2025 Mayank Pattnaik</li>
-								<li>Design: HTML5 UP</li>
-							</ul>
-						</div>
-					</div>
+    /* Floating stat cards */
+    .stat-card {
+      position: absolute;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.8rem 1.1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
 
-				</footer>
-			</div>
+    .stat-card.left {
+      left: -70px;
+      top: 40%;
+      animation: float 3s ease-in-out infinite;
+    }
 
-		</div>
+    .stat-card.right {
+      right: -55px;
+      bottom: 20%;
+      animation: float 3s ease-in-out 1.5s infinite;
+    }
 
-		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.dropotron.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+    .stat-icon { font-size: 1.3rem; }
 
-	</body>
+    .stat-text strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .stat-text span {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--ink-mute);
+      letter-spacing: 0.06em;
+    }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      opacity: 0;
+      animation: fadeIn 1s 1.2s forwards;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--ink-mute), transparent);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+
+    /* ── Section Shared ──────────────────────────────────────────── */
+    section {
+      padding: 6rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ── Research Interests ───────────────────────────────────────── */
+    #research {
+      background: var(--paper);
+      max-width: 100%;
+      padding: 6rem 0;
+    }
+
+    #research .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .research-card {
+      background: var(--paper);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+
+    .research-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .research-card:hover { background: #fff; }
+    .research-card:hover::before { transform: scaleX(1); }
+
+    .rc-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .rc-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+
+    .rc-desc {
+      font-size: 0.88rem;
+      color: var(--ink-mute);
+      line-height: 1.65;
+    }
+
+    .rc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.2rem;
+    }
+
+    .rc-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      padding: 0.2rem 0.55rem;
+      background: var(--paper-2);
+      border-radius: 3px;
+      color: var(--ink-soft);
+    }
+
+    /* ── Projects ─────────────────────────────────────────────────── */
+    .project-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+      transition: padding-left 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-item:first-of-type { border-top: 1px solid var(--line); }
+    .project-item:hover { padding-left: 0.75rem; }
+
+    .proj-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-mute);
+      margin-bottom: 0.5rem;
+    }
+
+    .proj-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .project-item:hover .proj-title { color: var(--accent); }
+
+    .proj-desc {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .proj-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .proj-arrow {
+      font-size: 1.5rem;
+      color: var(--ink-mute);
+      transition: transform 0.3s, color 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .project-item:hover .proj-arrow {
+      transform: translate(4px, -4px);
+      color: var(--accent);
+    }
+
+    /* ── Updates / Timeline ────────────────────────────────────────── */
+    .updates-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .update-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .update-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+    }
+
+    .update-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .update-body { padding: 1.5rem; }
+
+    .update-date {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .update-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .update-text {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+
+    /* ── Highlight Banner ─────────────────────────────────────────── */
+    #highlight {
+      max-width: 100%;
+      padding: 0;
+      background: var(--accent-2);
+    }
+
+    .highlight-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hl-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.75rem;
+    }
+
+    .hl-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .hl-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hl-badge {
+      background: var(--gold);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .hl-badge small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+      color: rgba(15,14,12,0.6);
+    }
+
+    /* ── Contact ──────────────────────────────────────────────────── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 4rem;
+    }
+
+    .contact-intro {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-sub {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      background: #fff;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      transform: translateX(6px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .cl-icon {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--paper-2);
+      border-radius: 6px;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .cl-text strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .cl-text span {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-mute);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--ink-mute);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Animations ───────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50%       { opacity: 0.3; transform: scaleY(0.6); }
+    }
+
+    /* Intersection observer fade-in */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero {
+        grid-template-columns: 1fr;
+        padding: 6rem 1.5rem 3rem;
+        text-align: center;
+      }
+      .hero-bio { margin: 0 auto 2rem; }
+      .hero-chips, .hero-actions { justify-content: center; }
+      .hero-card { margin: 2rem auto 0; }
+      .stat-card.left { left: -10px; }
+      .stat-card.right { right: -10px; }
+      section { padding: 4rem 1.5rem; }
+      .research-grid { grid-template-columns: 1fr; }
+      .updates-grid { grid-template-columns: 1fr; }
+      #contact { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+      .highlight-inner { grid-template-columns: 1fr; padding: 2.5rem 1.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav>
+    <a href="#hero" class="nav-logo">Mayank Pattnaik</a>
+    <ul class="nav-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#updates">Updates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1lxhaxNELq7_NFgHO3gSdHbSl__xbtHhi/view?usp=sharing" target="_blank" class="nav-cv">CV ↗</a>
+  </nav>
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section id="hero" style="max-width:100%;padding-top:7rem;padding-bottom:2rem;">
+    <div class="hero-text">
+      <div class="hero-tag">Physics · IIT Kanpur · 3rd Year</div>
+      <h1>Mayank<br /><em>Pattnaik</em></h1>
+      <p class="hero-bio">
+        I'm an undergraduate physicist at IIT Kanpur, working at the intersection of
+        machine learning, computational astrophysics, and quantum systems. When not in the lab,
+        I'm deep in a book, on the badminton court, or tending my garden.
+      </p>
+      <div class="hero-chips">
+        <span class="chip">📚 Avid Reader</span>
+        <span class="chip">♟ Chess Player</span>
+        <span class="chip">🏸 Badminton</span>
+        <span class="chip">🌿 Gardening</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Research</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-img-wrap">
+        <img src="images/pic01a.jpg" alt="Mayank Pattnaik" />
+      </div>
+      <div class="stat-card left">
+        <span class="stat-icon">🏆</span>
+        <div class="stat-text">
+          <strong>2nd Place</strong>
+          <span>InterIIT Tech 14.0</span>
+        </div>
+      </div>
+      <div class="stat-card right">
+        <span class="stat-icon">⚛️</span>
+        <div class="stat-text">
+          <strong>Physics UG</strong>
+          <span>IIT Kanpur</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ── Research Interests ───────────────────────────────────────── -->
+  <div id="research" style="padding:6rem 0;background:var(--paper);">
+    <div class="inner" style="max-width:1200px;margin:0 auto;padding:0 4rem;">
+      <div class="section-header reveal">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Research Interests</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="research-grid reveal">
+        <div class="research-card">
+          <span class="rc-icon">🤖</span>
+          <div class="rc-title">Applied Machine Learning</div>
+          <p class="rc-desc">Developing ML models to solve real-world scientific problems. Particularly interested in Physics-Informed Neural Networks and their applications to complex systems.</p>
+          <div class="rc-tags">
+            <span class="rc-tag">PINNs</span>
+            <span class="rc-tag">Neural ODEs</span>
+            <span class="rc-tag">Scientific ML</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <span class="rc-icon">🌌</span>
+          <div class="rc-title">Comp. Astrophysics</div>
+          <p class="rc-desc">Exploring the universe through computation — numerical simulations, data analysis of stellar phenomena, and bridging CSE methodologies with astrophysical problems.</p>
+          <div class="rc-tags">
+            <span class="rc-tag">N-body Sim</span>
+            <span class="rc-tag">Stellar Evolution</span>
+            <span class="rc-tag">Python</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <span class="rc-icon">🐈</span>
+          <div class="rc-title">Quantum Mechanics & QC</div>
+          <p class="rc-desc">Fascinated by the foundational weirdness of quantum theory and its computational implications. Meeeeoooowwww!!! (iykyk — yes, it's Schrödinger's cat.)</p>
+          <div class="rc-tags">
+            <span class="rc-tag">Quantum Info</span>
+            <span class="rc-tag">QC Algorithms</span>
+            <span class="rc-tag">QFT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projects ─────────────────────────────────────────────────── -->
+  <section id="projects" style="max-width:1200px;margin:0 auto;">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Projects & Research</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <a href="https://github.com/MayankPattnaik/Application_of_PINNs_to_dynamic_oscillator_systems" target="_blank" class="project-item reveal">
+      <div>
+        <div class="proj-num">001</div>
+        <div class="proj-title">PINNs for Dynamic Oscillator Systems</div>
+        <p class="proj-desc">Using Physics-Informed Neural Networks to approximate solutions and simulate dynamic quantum/physical systems — bridging the gap between classical numerical methods and deep learning.</p>
+        <div class="proj-tech">
+          <span class="chip">PINNs</span>
+          <span class="chip">Python</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">Differential Equations</span>
+        </div>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </a>
+
+    <div class="project-item reveal" style="cursor:default;">
+      <div>
+        <div class="proj-num">002</div>
+        <div class="proj-title">Recent Project</div>
+        <p class="proj-desc">Currently in the works. Stay tuned for updates on an exciting new research direction at the intersection of physics and computation.</p>
+        <div class="proj-tech">
+          <span class="chip">In Progress</span>
+        </div>
+      </div>
+      <div class="proj-arrow" style="color:var(--line);">↗</div>
+    </div>
+  </section>
+
+  <!-- ── Highlight Banner ─────────────────────────────────────────── -->
+  <div id="highlight" class="reveal">
+    <div class="highlight-inner">
+      <div>
+        <div class="hl-label">🏅 Achievement</div>
+        <div class="hl-title">InterIIT Tech Meet 14.0</div>
+        <p class="hl-desc">Secured 2nd position at the prestigious InterIIT Tech Meet 14.0, restoring the legacy of IIT Kanpur's technical prowess. An incredible team effort — congratulations everyone!</p>
+        <br/>
+        <a href="https://docs.google.com/spreadsheets/d/171b5VTwQ5rfgRLB89m7c1tNmjAfB4kh5/edit?usp=drivesdk&ouid=104278674115859851122&rtpof=true&sd=true" target="_blank" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">View Results ↗</a>
+      </div>
+      <div class="hl-badge">
+        <small>Position</small>
+        🥈 2<sup>nd</sup>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Updates ──────────────────────────────────────────────────── -->
+  <section id="updates" style="max-width:1200px;margin:0 auto;">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Recent Updates</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="updates-grid">
+      <div class="update-card reveal">
+        <img src="images/pic04.jpg" alt="Winter Vacations" class="update-img" />
+        <div class="update-body">
+          <div class="update-date">Dec 2025</div>
+          <div class="update-title">Winter Vacations Start!!</div>
+          <p class="update-text">Finally — lots of sleep, reunions and catching up... but also deep-diving into new research and building this website in between the chaos.</p>
+        </div>
+      </div>
+      <div class="update-card reveal">
+        <img src="images/pic05.jpg" alt="Endsems" class="update-img" />
+        <div class="update-body">
+          <div class="update-date">Nov 2025</div>
+          <div class="update-title">ENDSEMS/GAMES</div>
+          <p class="update-text">Interpret in your sense, visitor. A rollercoaster semester wraps up, and a 2.5-year journey hits a meaningful milestone.</p>
+        </div>
+      </div>
+      <div class="update-card reveal">
+        <img src="images/pic06.jpg" alt="Diwali" class="update-img" />
+        <div class="update-body">
+          <div class="update-date">Oct 2025</div>
+          <div class="update-title">Diwali Bonanza Ends</div>
+          <p class="update-text">Time pass right up until quizzes start getting on my head. The festive calm before the academic storm.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ──────────────────────────────────────────────────── -->
+  <div id="contact" style="border-top:1px solid var(--line);">
+    <div style="max-width:1200px;margin:0 auto;padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+      <div class="reveal">
+        <div class="section-num" style="margin-bottom:1rem;">04</div>
+        <p class="contact-intro">Let's talk physics, research, or anything else.</p>
+        <p class="contact-sub">I'm always open to discussions about research collaborations, interesting problems, or just a good book recommendation. Drop me a line!</p>
+      </div>
+      <div class="contact-links reveal">
+        <a href="mailto:mayankp23@iitk.ac.in" class="contact-link">
+          <div class="cl-icon">✉️</div>
+          <div class="cl-text">
+            <strong>Email</strong>
+            <span>mayankp23@iitk.ac.in</span>
+          </div>
+        </a>
+        <a href="https://github.com/MayankPattnaik" target="_blank" class="contact-link">
+          <div class="cl-icon">🐙</div>
+          <div class="cl-text">
+            <strong>GitHub</strong>
+            <span>github.com/MayankPattnaik</span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/mayank-pattnaik-92b987280/" target="_blank" class="contact-link">
+          <div class="cl-icon">💼</div>
+          <div class="cl-text">
+            <strong>LinkedIn</strong>
+            <span>Mayank Pattnaik</span>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/_planetxnine_/" target="_blank" class="contact-link">
+          <div class="cl-icon">📸</div>
+          <div class="cl-text">
+            <strong>Instagram</strong>
+            <span>@_planetxnine_</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────────────────── -->
+  <footer>
+    <span>© 2025–2026 Mayank Pattnaik</span>
+    <span>Physics · IIT Kanpur</span>
+    <span>Built with ♡ & vanilla HTML</span>
+  </footer>
+
+  <!-- ── JS: Scroll Reveal ─────────────────────────────────────────── -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = (i % 3) * 0.12 + 's';
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav shrink on scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.padding = window.scrollY > 60 ? '0.7rem 4rem' : '1.2rem 4rem';
+    });
+  </script>
+</body>
 </html>
