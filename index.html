@@ -663,8 +663,8 @@
     }
 
     .contact-links {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
       margin-top: 1rem;
     }
@@ -787,6 +787,7 @@
       <li><a href="#research">Research</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#updates">Updates</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="https://drive.google.com/file/d/1lxhaxNELq7_NFgHO3gSdHbSl__xbtHhi/view?usp=sharing" target="_blank" class="nav-cv">CV ↗</a>
@@ -817,20 +818,6 @@
     <div class="hero-card">
       <div class="hero-img-wrap">
         <img src="images/pic01a.jpg" alt="Mayank Pattnaik" />
-      </div>
-      <div class="stat-card left">
-        <span class="stat-icon">🏆</span>
-        <div class="stat-text">
-          <strong>2nd Place</strong>
-          <span>InterIIT Tech 14.0</span>
-        </div>
-      </div>
-      <div class="stat-card right">
-        <span class="stat-icon">⚛️</span>
-        <div class="stat-text">
-          <strong>Physics UG</strong>
-          <span>IIT Kanpur</span>
-        </div>
       </div>
     </div>
 
@@ -919,24 +906,7 @@
     </div>
   </section>
 
-  <!-- ── Highlight Banner ─────────────────────────────────────────── -->
-  <div id="highlight" class="reveal">
-    <div class="highlight-inner">
-      <div>
-        <div class="hl-label">🏅 Achievement</div>
-        <div class="hl-title">InterIIT Tech Meet 14.0</div>
-        <p class="hl-desc">Secured 2nd position at the prestigious InterIIT Tech Meet 14.0, restoring the legacy of IIT Kanpur's technical prowess. An incredible team effort — congratulations everyone!</p>
-        <br/>
-        <a href="https://docs.google.com/spreadsheets/d/171b5VTwQ5rfgRLB89m7c1tNmjAfB4kh5/edit?usp=drivesdk&ouid=104278674115859851122&rtpof=true&sd=true" target="_blank" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">View Results ↗</a>
-      </div>
-      <div class="hl-badge">
-        <small>Position</small>
-        🥈 2<sup>nd</sup>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Updates ──────────────────────────────────────────────────── -->
+<!-- ── Updates ──────────────────────────────────────────────────── -->
   <section id="updates" style="max-width:1200px;margin:0 auto;">
     <div class="section-header reveal">
       <span class="section-num">03</span>
@@ -973,13 +943,13 @@
 
   <!-- ── Contact ──────────────────────────────────────────────────── -->
   <div id="contact" style="border-top:1px solid var(--line);">
-    <div style="max-width:1200px;margin:0 auto;padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+    <div style="max-width:1200px;margin:0 auto;padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
       <div class="reveal">
         <div class="section-num" style="margin-bottom:1rem;">04</div>
         <p class="contact-intro">Let's talk physics, research, or anything else.</p>
         <p class="contact-sub">I'm always open to discussions about research collaborations, interesting problems, or just a good book recommendation. Drop me a line!</p>
       </div>
-      <div class="contact-links reveal">
+      <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <a href="mailto:mayankp23@iitk.ac.in" class="contact-link">
           <div class="cl-icon">✉️</div>
           <div class="cl-text">

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Mayank Pattnaik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #0f0e0c;
+      --ink-soft: #4a4640;
+      --ink-mute: #8a847c;
+      --paper:    #f7f5f0;
+      --paper-2:  #eeeae2;
+      --accent:   #b5400a;
+      --line:     rgba(15,14,12,0.1);
+      --r: 4px;
+      --sans: 'Outfit', sans-serif;
+      --serif: 'EB Garamond', serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--accent); color: #fff; }
+
+    /* noise */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(247,245,240,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      transition: padding 0.3s;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    .nav-cv {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.45rem 1rem;
+      border-radius: var(--r);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cv:hover { background: var(--accent); color: #fff; }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 8rem 4rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .page-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .page-tag::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--accent);
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    .page-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .page-sub {
+      font-size: 1rem;
+      color: var(--ink-mute);
+      margin-top: 0.8rem;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .post-count {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-mute);
+      letter-spacing: 0.08em;
+      text-align: right;
+    }
+
+    /* ── Filter Tabs ── */
+    .filter-bar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 4rem 0;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .filter-btn[data-tag="Physics"].active { background: #1a3a5c; border-color: #1a3a5c; }
+    .filter-btn[data-tag="ML"].active      { background: #5c2d91; border-color: #5c2d91; }
+    .filter-btn[data-tag="Life"].active    { background: #2d6a4f; border-color: #2d6a4f; }
+    .filter-btn[data-tag="Books"].active   { background: #6b3a2a; border-color: #6b3a2a; }
+
+    /* ── Blog Grid ── */
+    .blog-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 4rem 6rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Featured post spans 2 cols */
+    .post-card[data-featured="true"] {
+      grid-column: span 2;
+    }
+
+    .post-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+
+    .post-card[data-featured="true"] .post-body {
+      padding: 2rem 2.5rem;
+    }
+
+    .post-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .post-card[data-featured="true"] .post-img {
+      height: 280px;
+    }
+
+    .post-card:hover .post-img {
+      transform: scale(1.03);
+    }
+
+    .post-img-wrap {
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .post-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .post-date {
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    .post-tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .tag-Physics { background: #dde8f4; color: #1a3a5c; }
+    .tag-ML      { background: #ede8f7; color: #5c2d91; }
+    .tag-Life    { background: #d8eee5; color: #2d6a4f; }
+    .tag-Books   { background: #f2e4de; color: #6b3a2a; }
+    .tag-Essay   { background: #f0ece0; color: #5a5030; }
+
+    .post-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+      transition: color 0.2s;
+    }
+
+    .post-card[data-featured="true"] .post-title {
+      font-size: 1.65rem;
+    }
+
+    .post-card:hover .post-title { color: var(--accent); }
+
+    .post-excerpt {
+      font-size: 0.86rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .post-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .read-time {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--ink-mute);
+      letter-spacing: 0.06em;
+    }
+
+    .read-more {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.2s;
+    }
+
+    .post-card:hover .read-more { gap: 0.55rem; }
+
+    /* empty state */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 5rem 2rem;
+      display: none;
+    }
+
+    .empty-state.visible { display: block; }
+
+    .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+    .empty-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .empty-sub {
+      font-size: 0.9rem;
+      color: var(--ink-mute);
+    }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,14,12,0.6);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--paper);
+      border-radius: 12px;
+      max-width: 720px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(24px);
+      transition: transform 0.3s;
+    }
+
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .modal-body { padding: 2.5rem; }
+
+    .modal-meta {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .modal-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-content {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.85;
+    }
+
+    .modal-content p { margin-bottom: 1rem; }
+
+    .modal-content p:last-child { margin-bottom: 0; }
+
+    .modal-close {
+      position: sticky;
+      top: 1rem;
+      float: right;
+      margin: 1rem 1rem 0 0;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-mute);
+      transition: background 0.2s, color 0.2s;
+      z-index: 10;
+    }
+
+    .modal-close:hover { background: var(--ink); color: #fff; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--ink-mute);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Reveal animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Hidden posts ── */
+    .post-card.hidden { display: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 6rem 1.5rem 2.5rem; grid-template-columns: 1fr; }
+      .filter-bar { padding: 1.5rem 1.5rem 0; }
+      .blog-grid { padding: 2rem 1.5rem 4rem; grid-template-columns: 1fr; }
+      .post-card[data-featured="true"] { grid-column: span 1; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav>
+    <a href="index.html" class="nav-logo">Mayank Pattnaik</a>
+    <ul class="nav-links">
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#updates">Updates</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1lxhaxNELq7_NFgHO3gSdHbSl__xbtHhi/view?usp=sharing" target="_blank" class="nav-cv">CV ↗</a>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header reveal">
+    <div>
+      <div class="page-tag">Writing · Thinking · Exploring</div>
+      <h1 class="page-title">The <em>Blog</em></h1>
+      <p class="page-sub">Essays on physics, machine learning, books I've read, and life at IIT Kanpur. Irregular, honest, sometimes long.</p>
+    </div>
+    <div class="post-count" id="post-count">— posts</div>
+  </div>
+
+  <!-- ── Filter Bar ── -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-tag="All">All</button>
+    <button class="filter-btn" data-tag="Physics">Physics</button>
+    <button class="filter-btn" data-tag="ML">ML</button>
+    <button class="filter-btn" data-tag="Life">Life</button>
+    <button class="filter-btn" data-tag="Books">Books</button>
+    <button class="filter-btn" data-tag="Essay">Essay</button>
+  </div>
+
+  <!-- ── Blog Grid ── -->
+  <div class="blog-grid" id="blog-grid">
+
+    <!-- Post 1 – Featured -->
+    <article class="post-card reveal" data-featured="true" data-tags="Physics,ML">
+      <div class="post-img-wrap">
+        <img src="images/pic01a.jpg" alt="PINNs" class="post-img" />
+      </div>
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-date">May 2026</span>
+          <span class="post-tag tag-Physics">Physics</span>
+          <span class="post-tag tag-ML">ML</span>
+        </div>
+        <div class="post-title">Why PINNs Are a Big Deal (and Why They're Hard)</div>
+        <p class="post-excerpt">Physics-Informed Neural Networks promise to fuse the power of deep learning with centuries of physical intuition baked into differential equations. After spending months building one, here's what I actually learned — including where it all falls apart.</p>
+        <div class="post-footer">
+          <span class="read-time">⏱ 8 min read</span>
+          <span class="read-more">Read →</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 2 -->
+    <article class="post-card reveal" data-tags="Life">
+      <div class="post-img-wrap">
+        <img src="images/pic04.jpg" alt="IIT Life" class="post-img" />
+      </div>
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-date">Dec 2025</span>
+          <span class="post-tag tag-Life">Life</span>
+        </div>
+        <div class="post-title">2.5 Years at IIT Kanpur: An Honest Retrospective</div>
+        <p class="post-excerpt">Not the motivational kind. A real look at what it's been — the late nights, the identity crises, the friendships, the research highs, and what I'd tell my first-year self.</p>
+        <div class="post-footer">
+          <span class="read-time">⏱ 6 min read</span>
+          <span class="read-more">Read →</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 3 -->
+    <article class="post-card reveal" data-tags="Physics">
+      <div class="post-img-wrap">
+        <img src="images/pic05.jpg" alt="Quantum" class="post-img" />
+      </div>
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-date">Nov 2025</span>
+          <span class="post-tag tag-Physics">Physics</span>
+        </div>
+        <div class="post-title">Schrödinger's Cat Is Not About a Cat</div>
+        <p class="post-excerpt">Everyone's heard the story. Almost no one understands what it actually means. Let me try — with minimal jargon and maximum honesty about what quantum mechanics is telling us about reality.</p>
+        <div class="post-footer">
+          <span class="read-time">⏱ 5 min read</span>
+          <span class="read-more">Read →</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 4 -->
+    <article class="post-card reveal" data-tags="Books">
+      <div class="post-img-wrap">
+        <img src="images/pic06.jpg" alt="Books" class="post-img" />
+      </div>
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-date">Oct 2025</span>
+          <span class="post-tag tag-Books">Books</span>
+        </div>
+        <div class="post-title">Books That Changed How I Think About Physics</div>
+        <p class="post-excerpt">Not textbooks. The ones that made me feel the wonder of it all — Feynman, Penrose, Carroll, and a few underrated gems nobody talks about enough.</p>
+        <div class="post-footer">
+          <span class="read-time">⏱ 4 min read</span>
+          <span class="read-more">Read →</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 5 -->
+    <article class="post-card reveal" data-tags="ML,Essay">
+      <div class="post-body" style="padding:2rem;">
+        <div class="post-meta">
+          <span class="post-date">Sep 2025</span>
+          <span class="post-tag tag-ML">ML</span>
+          <span class="post-tag tag-Essay">Essay</span>
+        </div>
+        <div class="post-title">Neural Networks Are Not Magic. They're Just Calculus.</div>
+        <p class="post-excerpt">Demystifying backpropagation from the ground up. If you've ever felt intimidated by "deep learning", this is for you — just a chain rule and a lot of patience.</p>
+        <div class="post-footer">
+          <span class="read-time">⏱ 10 min read</span>
+          <span class="read-more">Read →</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Post 6 -->
+    <article class="post-card reveal" data-tags="Life,Essay">
+      <div class="post-body" style="padding:2rem;">
+        <div class="post-meta">
+          <span class="post-date">Aug 2025</span>
+          <span class="post-tag tag-Life">Life</span>
+          <span class="post-tag tag-Essay">Essay</span>
+        </div>
+        <div class="post-title">On Gardening, Patience, and Research</div>
+        <p class="post-excerpt">Growing plants and doing physics research share more in common than I expected. You can't rush either. Here's what tending to my tiny campus garden taught me about waiting for results.</p>
+        <div class="post-footer">
+          <span class="read-time">⏱ 3 min read</span>
+          <span class="read-more">Read →</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">🔭</div>
+      <div class="empty-title">No posts in this category yet</div>
+      <p class="empty-sub">Check back soon — more writing is on the way.</p>
+    </div>
+
+  </div>
+
+  <!-- ── Modal ── -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <img src="" alt="" class="modal-img" id="modal-img" style="display:none;" />
+      <div class="modal-body">
+        <div class="modal-meta" id="modal-meta"></div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-content" id="modal-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <span>© 2025–2026 Mayank Pattnaik</span>
+    <span>Physics · IIT Kanpur</span>
+    <a href="index.html" style="color:var(--accent);text-decoration:none;">← Back to Portfolio</a>
+  </footer>
+
+  <script>
+    // ── Post content data ──────────────────────────────────────────
+    const postContent = [
+      {
+        title: "Why PINNs Are a Big Deal (and Why They're Hard)",
+        date: "May 2026",
+        tags: ["Physics", "ML"],
+        img: "images/pic01a.jpg",
+        readTime: "8 min read",
+        body: `
+          <p>Physics-Informed Neural Networks — or PINNs — occupy a peculiar and exciting space in modern machine learning. On one hand, they are neural networks: universal function approximators trained via gradient descent. On the other, they are deeply tied to the physics of a problem through the loss function, which encodes the governing differential equations directly.</p>
+          <p>When I started my project on applying PINNs to dynamic oscillator systems, I thought it would be a matter of plugging in the equations and watching the network learn. I was wrong — beautifully, instructively wrong.</p>
+          <p>The core idea is elegant. A PINN is trained not just to match data, but to satisfy a PDE (or ODE) at a set of "collocation points" sampled in the domain. The physics residual — how much the network's output violates the equation — becomes part of the loss. This is what makes PINNs different: they don't need labeled training data at every point. The physics fills in the gaps.</p>
+          <p>But here's where it gets tricky. The loss landscape of a PINN is far more complex than a standard regression network. You're balancing multiple competing objectives — the data loss, the physics loss, and the boundary/initial condition loss — and they don't always agree on what the network should do. Hyper-parameter sensitivity is brutal. Learning rate, collocation point density, network depth — all of it matters enormously.</p>
+          <p>Still, when it works, it's genuinely magical. Watching a network learn the trajectory of a damped oscillator without ever seeing labeled intermediate states — just from the differential equation and a few initial conditions — felt like a small miracle. I'm convinced PINNs are going to be increasingly important in scientific computing. The rough edges will smooth out.</p>
+        `
+      },
+      {
+        title: "2.5 Years at IIT Kanpur: An Honest Retrospective",
+        date: "Dec 2025",
+        tags: ["Life"],
+        img: "images/pic04.jpg",
+        readTime: "6 min read",
+        body: `
+          <p>I'm not going to write the version of this post that sounds like a LinkedIn highlight reel. You've read enough of those. This is the honest one.</p>
+          <p>IIT Kanpur is extraordinary, and it is exhausting. Those two things are not contradictory — in fact, they are deeply intertwined. The same environment that pushes you to grow past what you thought you could do will, on some days, make you question whether you belong here at all.</p>
+          <p>My first year was survival mode. Adjusting to the pace, the culture, the sheer density of smart, driven people around you. It took me a long time to stop comparing myself and start building something that felt like mine.</p>
+          <p>The research came in second year, almost by accident — a conversation after a lecture, a professor who took a chance, a problem that lit something up in me. That's when IIT Kanpur started feeling less like a gauntlet and more like the place I was supposed to be.</p>
+          <p>Third year brought InterIIT, late nights, a 2nd place finish, and the strange pride of doing something hard with people you trust. It also brought a lot of quiet — time to read, to garden, to figure out what I actually want from physics and from life.</p>
+          <p>If you're an incoming student reading this: it will be hard. That's not a warning, it's a promise. The hard parts are what shape you.</p>
+        `
+      },
+      {
+        title: "Schrödinger's Cat Is Not About a Cat",
+        date: "Nov 2025",
+        tags: ["Physics"],
+        img: "images/pic05.jpg",
+        readTime: "5 min read",
+        body: `
+          <p>Erwin Schrödinger didn't love cats. He invented the cat thought experiment to illustrate how absurd quantum mechanics becomes when you try to apply it to the macroscopic world — it was a reductio ad absurdum, not a statement about feline welfare.</p>
+          <p>Here's the actual point. In quantum mechanics, a particle can exist in a superposition of states — spin up and spin down simultaneously — until it is measured. The act of measurement collapses the superposition into one definite outcome. This is weird, but it's experimentally confirmed at the atomic level.</p>
+          <p>Schrödinger's question was: what happens when you link a quantum event to a macroscopic object? In his thought experiment, the decay of a radioactive atom (a quantum event) is connected to a mechanism that releases poison gas, which kills a cat. Before you open the box, the atom is in superposition — decayed and not-decayed. Does that mean the cat is simultaneously alive and dead?</p>
+          <p>The point he was making: quantum mechanics, taken literally, predicts something absurd at human scales. Either the theory breaks down somewhere between atoms and cats, or our intuitions about reality are deeply wrong, or measurement means something very different than we think.</p>
+          <p>We still don't have a fully satisfying answer. That's what makes it one of the most important unsolved questions in physics — not a fun piece of trivia, but a genuine wound in our understanding of the universe.</p>
+        `
+      },
+      {
+        title: "Books That Changed How I Think About Physics",
+        date: "Oct 2025",
+        tags: ["Books"],
+        img: "images/pic06.jpg",
+        readTime: "4 min read",
+        body: `
+          <p>The Feynman Lectures on Physics are the obvious one, so I'll mention them briefly and move on: yes, read them, no they are not as easy as people claim, yes they're worth it.</p>
+          <p><em>The Road to Reality</em> by Roger Penrose is the book I return to most often. It's 1000 pages long, covers everything from complex numbers to quantum gravity, and does not condescend. Penrose trusts you to rise to the material. Not all of it will click on a first read. That's the point.</p>
+          <p><em>Something Deeply Hidden</em> by Sean Carroll is the best popular treatment of the Many Worlds Interpretation I've encountered. Whether or not you buy the interpretation, Carroll's clarity about what quantum mechanics actually says — versus what popularisers claim it says — is genuinely useful.</p>
+          <p><em>The Elegant Universe</em> by Brian Greene turned me onto string theory when I was 15. I'm more skeptical of it now than I was then, but the experience of reading a book that makes you feel the beauty of theoretical physics is irreplaceable.</p>
+          <p>Underrated mention: <em>Quantum Theory Cannot Hurt You</em> by Marcus Chown. Short, funny, surprisingly accurate. Good for days when you need physics to feel fun again.</p>
+        `
+      },
+      {
+        title: "Neural Networks Are Not Magic. They're Just Calculus.",
+        date: "Sep 2025",
+        tags: ["ML", "Essay"],
+        img: null,
+        readTime: "10 min read",
+        body: `
+          <p>Somewhere along the way, "deep learning" acquired a mystique it doesn't deserve. People speak of neural networks as if they are black boxes operating on principles beyond human understanding. This is both wrong and unhelpful — especially for physicists, who already have all the mathematical tools they need.</p>
+          <p>Let me build a neural network from scratch, conceptually, using nothing but things you probably already know.</p>
+          <p>A neural network is a parameterized function. You put numbers in, apply a series of linear transformations and non-linearities, and get numbers out. The parameters — the weights and biases — are what the network "learns".</p>
+          <p>Training is the process of adjusting those parameters to make the network's output match desired outputs on a dataset. We do this by defining a loss function — a scalar that measures how wrong the network is — and then computing its gradient with respect to all the parameters. This is backpropagation, and it is just the chain rule of calculus applied recursively through the network's layers.</p>
+          <p>Gradient descent then nudges each parameter in the direction that reduces the loss. Do this enough times on enough data, and the network gets good at the task. That's it. No magic. Lots of linear algebra, lots of calculus, and a great deal of careful engineering around the details.</p>
+          <p>The interesting questions — why do these networks generalize so well? why do they find good solutions in such high-dimensional spaces? — are genuinely hard and still open. But the mechanics are not mysterious.</p>
+        `
+      },
+      {
+        title: "On Gardening, Patience, and Research",
+        date: "Aug 2025",
+        tags: ["Life", "Essay"],
+        img: null,
+        readTime: "3 min read",
+        body: `
+          <p>I keep a small garden in my room at IIT Kanpur. A few pots on the windowsill: basil, a stubborn money plant, and something I grew from a mystery seed that turned out to be tomatoes. Nobody told me academic life would involve tending plants, but here we are.</p>
+          <p>The thing about plants is that they operate on their own schedule. You can water them, give them light, adjust the soil — but you cannot make them grow faster by wanting it harder. There is a minimum time that must pass. All you can do is create good conditions and wait.</p>
+          <p>Research is the same. You read, you think, you run experiments, you discuss — but the insight comes when it comes. The breakthrough doesn't respect deadlines. The best you can do is show up consistently, do the work, and create the conditions for understanding to grow.</p>
+          <p>I've started thinking of my research like my tomato plant. Some days it looks like nothing is happening. Then one day there's a flower, and then a fruit. The growth was happening the whole time; I just couldn't see it.</p>
+          <p>If you're in a slow stretch with your work: keep watering it. The fruit is coming.</p>
+        `
+      }
+    ];
+
+    // ── Attach click handlers ──────────────────────────────────────
+    const cards = document.querySelectorAll('.post-card');
+    const overlay = document.getElementById('modal-overlay');
+    const modalImg = document.getElementById('modal-img');
+    const modalMeta = document.getElementById('modal-meta');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const modalClose = document.getElementById('modal-close');
+
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        const post = postContent[i];
+        if (!post) return;
+
+        if (post.img) {
+          modalImg.src = post.img;
+          modalImg.style.display = 'block';
+        } else {
+          modalImg.style.display = 'none';
+        }
+
+        modalMeta.innerHTML = `
+          <span class="post-date">${post.date}</span>
+          ${post.tags.map(t => `<span class="post-tag tag-${t}">${t}</span>`).join('')}
+          <span class="read-time">${post.readTime}</span>
+        `;
+        modalTitle.textContent = post.title;
+        modalContent.innerHTML = post.body;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── Filter ─────────────────────────────────────────────────────
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const emptyState = document.getElementById('empty-state');
+    const postCount = document.getElementById('post-count');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const tag = btn.dataset.tag;
+        let visible = 0;
+
+        cards.forEach(card => {
+          const tags = card.dataset.tags || '';
+          const show = tag === 'All' || tags.includes(tag);
+          card.classList.toggle('hidden', !show);
+          if (show) visible++;
+        });
+
+        emptyState.classList.toggle('visible', visible === 0);
+        postCount.textContent = `${visible} post${visible !== 1 ? 's' : ''}`;
+      });
+    });
+
+    // Initial count
+    postCount.textContent = `${cards.length} posts`;
+
+    // ── Scroll reveal ──────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = (i % 3) * 0.1 + 's';
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav shrink
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.padding = window.scrollY > 60 ? '0.7rem 4rem' : '1.2rem 4rem';
+    });
+  </script>
+</body>
+</html>
