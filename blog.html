@@ -691,30 +691,30 @@
     const postContent = [
       {
         title: "Why PINNs Are a Big Deal (and Why They're Hard)",
-        date: "May 2026",
+        date: "Dec 2025",
         tags: ["Physics", "ML"],
         img: "images/pic01a.jpg",
         readTime: "8 min read",
         body: `
-          <p>Physics-Informed Neural Networks — or PINNs — occupy a peculiar and exciting space in modern machine learning. On one hand, they are neural networks: universal function approximators trained via gradient descent. On the other, they are deeply tied to the physics of a problem through the loss function, which encodes the governing differential equations directly.</p>
-          <p>When I started my project on applying PINNs to dynamic oscillator systems, I thought it would be a matter of plugging in the equations and watching the network learn. I was wrong — beautifully, instructively wrong.</p>
-          <p>The core idea is elegant. A PINN is trained not just to match data, but to satisfy a PDE (or ODE) at a set of "collocation points" sampled in the domain. The physics residual — how much the network's output violates the equation — becomes part of the loss. This is what makes PINNs different: they don't need labeled training data at every point. The physics fills in the gaps.</p>
-          <p>But here's where it gets tricky. The loss landscape of a PINN is far more complex than a standard regression network. You're balancing multiple competing objectives — the data loss, the physics loss, and the boundary/initial condition loss — and they don't always agree on what the network should do. Hyper-parameter sensitivity is brutal. Learning rate, collocation point density, network depth — all of it matters enormously.</p>
-          <p>Still, when it works, it's genuinely magical. Watching a network learn the trajectory of a damped oscillator without ever seeing labeled intermediate states — just from the differential equation and a few initial conditions — felt like a small miracle. I'm convinced PINNs are going to be increasingly important in scientific computing. The rough edges will smooth out.</p>
+          <p>Physics-Informed Neural Networks, or PINNs, occupy a peculiar and exciting space in modern machine learning. On one hand, they are neural networks: universal function approximators trained via gradient descent. On the other, they are deeply tied to the physics of a problem through the loss function, which encodes the governing differential equations directly.</p>
+          <p>When I started my project on applying PINNs to dynamic oscillator systems, I thought it would be a matter of plugging in the equations and watching the network learn. I was wrong; beautifully, instructively wrong.</p>
+          <p>The core idea is elegant. A PINN is trained not just to match data, but to satisfy a PDE (or ODE) at a set of "collocation points" sampled in the domain. The physics residual: how much the network's output violates the equation & becomes part of the loss. This is what makes PINNs different: they don't need labeled training data at every point. The physics fills in the gaps.</p>
+          <p>But here's where it gets tricky. The loss landscape of a PINN is far more complex than a standard regression network. You're balancing multiple competing objectives: the data loss, the physics loss, and the boundary/initial condition loss and they don't always agree on what the network should do. Hyper-parameter sensitivity is brutal. Learning rate, collocation point density, network depth, all of it matters enormously.</p>
+          <p>Still, when it works, it's genuinely magical. Watching a network learn the trajectory of a damped oscillator without ever seeing labeled intermediate states, just from the differential equation and a few initial conditions felt like a small miracle. I'm convinced PINNs are going to be increasingly important in scientific computing. The rough edges will smooth out.</p>
         `
       },
       {
-        title: "2.5 Years at IIT Kanpur: An Honest Retrospective",
+        title: "2 Years at IIT Kanpur: An Honest Retrospective",
         date: "Dec 2025",
         tags: ["Life"],
         img: "images/pic04.jpg",
         readTime: "6 min read",
         body: `
           <p>I'm not going to write the version of this post that sounds like a LinkedIn highlight reel. You've read enough of those. This is the honest one.</p>
-          <p>IIT Kanpur is extraordinary, and it is exhausting. Those two things are not contradictory — in fact, they are deeply intertwined. The same environment that pushes you to grow past what you thought you could do will, on some days, make you question whether you belong here at all.</p>
+          <p>IIT Kanpur is extraordinary, and it is exhausting. Those two things are not contradictory, in fact, they are deeply intertwined. The same environment that pushes you to grow past what you thought you could do will, on some days, make you question whether you belong here at all.</p>
           <p>My first year was survival mode. Adjusting to the pace, the culture, the sheer density of smart, driven people around you. It took me a long time to stop comparing myself and start building something that felt like mine.</p>
-          <p>The research came in second year, almost by accident — a conversation after a lecture, a professor who took a chance, a problem that lit something up in me. That's when IIT Kanpur started feeling less like a gauntlet and more like the place I was supposed to be.</p>
-          <p>Third year brought InterIIT, late nights, a 2nd place finish, and the strange pride of doing something hard with people you trust. It also brought a lot of quiet — time to read, to garden, to figure out what I actually want from physics and from life.</p>
+          <p>The research came in second year, almost by accident, a conversation after a lecture, a professor who took a chance, a problem that lit something up in me. That's when IIT Kanpur started feeling less like a gauntlet and more like the place I was supposed to be.</p>
+          <p>Second year brought InterIIT, late nights, a 2nd place finish, and the strange pride of doing something hard with people you trust. It also brought a lot of quiet time to read, to figure out what I actually want from physics and from life.</p>
           <p>If you're an incoming student reading this: it will be hard. That's not a warning, it's a promise. The hard parts are what shape you.</p>
         `
       },
@@ -725,11 +725,11 @@
         img: "images/pic05.jpg",
         readTime: "5 min read",
         body: `
-          <p>Erwin Schrödinger didn't love cats. He invented the cat thought experiment to illustrate how absurd quantum mechanics becomes when you try to apply it to the macroscopic world — it was a reductio ad absurdum, not a statement about feline welfare.</p>
-          <p>Here's the actual point. In quantum mechanics, a particle can exist in a superposition of states — spin up and spin down simultaneously — until it is measured. The act of measurement collapses the superposition into one definite outcome. This is weird, but it's experimentally confirmed at the atomic level.</p>
-          <p>Schrödinger's question was: what happens when you link a quantum event to a macroscopic object? In his thought experiment, the decay of a radioactive atom (a quantum event) is connected to a mechanism that releases poison gas, which kills a cat. Before you open the box, the atom is in superposition — decayed and not-decayed. Does that mean the cat is simultaneously alive and dead?</p>
+          <p>Erwin Schrödinger didn't love cats. He invented the cat thought experiment to illustrate how absurd quantum mechanics becomes when you try to apply it to the macroscopic world, it was a reductio ad absurdum, not a statement about feline welfare.</p>
+          <p>Here's the actual point. In quantum mechanics, a particle can exist in a superposition of states, spin up and spin down simultaneously, until it is measured. The act of measurement collapses the superposition into one definite outcome. This is weird, but it's experimentally confirmed at the atomic level.</p>
+          <p>Schrödinger's question was: what happens when you link a quantum event to a macroscopic object? In his thought experiment, the decay of a radioactive atom (a quantum event) is connected to a mechanism that releases poison gas, which kills a cat. Before you open the box, the atom is in superposition: decayed and not-decayed. Does that mean the cat is simultaneously alive and dead?</p>
           <p>The point he was making: quantum mechanics, taken literally, predicts something absurd at human scales. Either the theory breaks down somewhere between atoms and cats, or our intuitions about reality are deeply wrong, or measurement means something very different than we think.</p>
-          <p>We still don't have a fully satisfying answer. That's what makes it one of the most important unsolved questions in physics — not a fun piece of trivia, but a genuine wound in our understanding of the universe.</p>
+          <p>We still don't have a fully satisfying answer. That's what makes it one of the most important unsolved questions in physics, not a fun piece of trivia, but a genuine wound in our understanding of the universe.</p>
         `
       },
       {
@@ -741,7 +741,7 @@
         body: `
           <p>The Feynman Lectures on Physics are the obvious one, so I'll mention them briefly and move on: yes, read them, no they are not as easy as people claim, yes they're worth it.</p>
           <p><em>The Road to Reality</em> by Roger Penrose is the book I return to most often. It's 1000 pages long, covers everything from complex numbers to quantum gravity, and does not condescend. Penrose trusts you to rise to the material. Not all of it will click on a first read. That's the point.</p>
-          <p><em>Something Deeply Hidden</em> by Sean Carroll is the best popular treatment of the Many Worlds Interpretation I've encountered. Whether or not you buy the interpretation, Carroll's clarity about what quantum mechanics actually says — versus what popularisers claim it says — is genuinely useful.</p>
+          <p><em>Something Deeply Hidden</em> by Sean Carroll is the best popular treatment of the Many Worlds Interpretation I've encountered. Whether or not you buy the interpretation, Carroll's clarity about what quantum mechanics actually says, versus what popularisers claim it says, is genuinely useful.</p>
           <p><em>The Elegant Universe</em> by Brian Greene turned me onto string theory when I was 15. I'm more skeptical of it now than I was then, but the experience of reading a book that makes you feel the beauty of theoretical physics is irreplaceable.</p>
           <p>Underrated mention: <em>Quantum Theory Cannot Hurt You</em> by Marcus Chown. Short, funny, surprisingly accurate. Good for days when you need physics to feel fun again.</p>
         `
@@ -753,25 +753,25 @@
         img: null,
         readTime: "10 min read",
         body: `
-          <p>Somewhere along the way, "deep learning" acquired a mystique it doesn't deserve. People speak of neural networks as if they are black boxes operating on principles beyond human understanding. This is both wrong and unhelpful — especially for physicists, who already have all the mathematical tools they need.</p>
+          <p>Somewhere along the way, "deep learning" acquired a mystique it doesn't deserve. People speak of neural networks as if they are black boxes operating on principles beyond human understanding. This is both wrong and unhelpful, especially for physicists, who already have all the mathematical tools they need.</p>
           <p>Let me build a neural network from scratch, conceptually, using nothing but things you probably already know.</p>
-          <p>A neural network is a parameterized function. You put numbers in, apply a series of linear transformations and non-linearities, and get numbers out. The parameters — the weights and biases — are what the network "learns".</p>
-          <p>Training is the process of adjusting those parameters to make the network's output match desired outputs on a dataset. We do this by defining a loss function — a scalar that measures how wrong the network is — and then computing its gradient with respect to all the parameters. This is backpropagation, and it is just the chain rule of calculus applied recursively through the network's layers.</p>
+          <p>A neural network is a parameterized function. You put numbers in, apply a series of linear transformations and non-linearities, and get numbers out. The parameters, the weights and biases, are what the network "learns".</p>
+          <p>Training is the process of adjusting those parameters to make the network's output match desired outputs on a dataset. We do this by defining a loss function, a scalar that measures how wrong the network is, and then computing its gradient with respect to all the parameters. This is backpropagation, and it is just the chain rule of calculus applied recursively through the network's layers.</p>
           <p>Gradient descent then nudges each parameter in the direction that reduces the loss. Do this enough times on enough data, and the network gets good at the task. That's it. No magic. Lots of linear algebra, lots of calculus, and a great deal of careful engineering around the details.</p>
-          <p>The interesting questions — why do these networks generalize so well? why do they find good solutions in such high-dimensional spaces? — are genuinely hard and still open. But the mechanics are not mysterious.</p>
+          <p>The interesting questions: why do these networks generalize so well? why do they find good solutions in such high-dimensional spaces?, are genuinely hard and still open. But the mechanics are not mysterious.</p>
         `
       },
       {
-        title: "On Gardening, Patience, and Research",
+        title: "On Academia, Patience, and Research",
         date: "Aug 2025",
         tags: ["Life", "Essay"],
         img: null,
         readTime: "3 min read",
         body: `
-          <p>I keep a small garden in my room at IIT Kanpur. A few pots on the windowsill: basil, a stubborn money plant, and something I grew from a mystery seed that turned out to be tomatoes. Nobody told me academic life would involve tending plants, but here we are.</p>
-          <p>The thing about plants is that they operate on their own schedule. You can water them, give them light, adjust the soil — but you cannot make them grow faster by wanting it harder. There is a minimum time that must pass. All you can do is create good conditions and wait.</p>
-          <p>Research is the same. You read, you think, you run experiments, you discuss — but the insight comes when it comes. The breakthrough doesn't respect deadlines. The best you can do is show up consistently, do the work, and create the conditions for understanding to grow.</p>
-          <p>I've started thinking of my research like my tomato plant. Some days it looks like nothing is happening. Then one day there's a flower, and then a fruit. The growth was happening the whole time; I just couldn't see it.</p>
+          <p>I had a small garden in front of my room at IIT Kanpur. A few pots on the ground: basil, a stubborn money plant, and other random shrubs. Nobody told me academic life would involve observing these plants while I'm supposed to be studying, but here we are.</p>
+          <p>The thing about plants is that they operate on their own schedule. You can water them, give them light, adjust the soil, but you cannot make them grow faster by wanting it harder. There is a minimum time that must pass. All you can do is create good conditions and wait.</p>
+          <p>Research is the same. You read, you think, you run experiments, you discuss, but the insight comes when it comes. The breakthrough doesn't respect deadlines. The best you can do is show up consistently, do the work, and create the conditions for understanding to grow.</p>
+          <p>I've started thinking of my research like a plant. Some days it looks like nothing is happening. Then one day there's a flower, and then a fruit. The growth was happening the whole time; I just couldn't see it.</p>
           <p>If you're in a slow stretch with your work: keep watering it. The fruit is coming.</p>
         `
       }
